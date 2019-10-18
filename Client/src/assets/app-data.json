@@ -1,0 +1,77 @@
+{
+  "app": {
+    "name": "FASA",
+    "description": ""
+  },
+  "user": {
+    "name": "مدیر سیستم",
+    "avatar": "./assets/images/avatar.png",
+    "email": "admin@faza.com"
+  },
+  "menu": [
+    {
+      "text": "",
+      "group": false,
+      "i18n": "",
+      "hideInBreadcrumb": true,
+      "children": [
+        {
+          "text": "registration",
+          "i18n": "menu.registration",
+          "icon": "anticon-dashboard",
+          "children": [
+            {
+              "text": "personnel-details",
+              "link": "/personnel-details",
+              "i18n": "menu.personnel-details"
+            },
+            {
+              "text": "personnel-contract",
+              "link": "/personnel-contract",
+              "i18n": "menu.personnel-contract"
+            },
+            {
+              "text": "monthly-functionality",
+              "link": "/monthly-functionality",
+              "i18n": "menu.monthly-functionality"
+            },
+            {
+              "text": "applicants-registration",
+              "link": "/applicants-register",
+              "i18n": "menu.applicants-registration"
+            }
+          ]
+        },
+        {
+          "text": "base-info",
+          "i18n": "menu.base-info",
+          "icon": "anticon-dashboard",
+          "children": [
+            {
+              "text": "description-rulings",
+              "link": "/description-rulling",
+              "i18n": "menu.description-rulings"
+            },
+            {
+              "text": "jobs",
+              "link": "/jobs",
+              "i18n": "menu.jobs"
+            }
+          ]
+        },
+        {
+          "text": "reports",
+          "i18n": "menu.reports",
+          "icon": "anticon-dashboard",
+          "children": [
+            {
+              "text": "personnel-list",
+              "link": "/personnel-list",
+              "i18n": "menu.personnel-list"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

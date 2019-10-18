@@ -1,0 +1,218 @@
+<div class="card p-20">
+  <div nz-row>
+    <div nz-col nzSpan="21">
+      <h2>قرارداد پرسنل</h2>
+      <hr />
+      <p>با استفاده از موارد زیر پرسنل مورد نظر خود را جستجو نمایید.</p>
+      <div nz-row>
+        <div nz-col nzSpan="4">
+          <div class="row">
+            <div class="p-5 align-left"><label>شماره پرسنلی : </label></div>
+            <div class="p-5 flex-1"><input nz-input type="text" /></div>
+          </div>
+        </div>
+        <div nz-col nzSpan="1"></div>
+        <div nz-col nzSpan="4">
+          <div class="row">
+            <div class="p-5 align-left"><label>نام : </label></div>
+            <div class="p-5 flex-1"><input nz-input type="text" /></div>
+          </div>
+        </div>
+        <div nz-col nzSpan="1"></div>
+        <div nz-col nzSpan="7">
+          <div class="row">
+            <div class="p-5 align-left"><label>نام خانوادگی : </label></div>
+            <div class="p-5 flex-1"><input nz-input type="text" /></div>
+          </div>
+        </div>
+        <div nz-col nzSpan="1"></div>
+        <div nz-col nzSpan="5">
+          <div class="row">
+            <div class="p-5 align-left"><label>وضعیت : </label></div>
+            <div class="p-5 flex-1">
+              <nz-select>
+                <nz-option
+                  *ngFor="let item of constants?.vaziat_gharardad"
+                  [nzValue]="item"
+                  [nzLabel]="item"
+                ></nz-option>
+              </nz-select>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-center" nz-col nzSpan="3">
+      <div class="image" nz-col nzSpan="4">
+        <img src="" alt="" />
+      </div>
+    </div>
+  </div>
+</div>
+<div class="my-20 card p-20">
+  <p>برای مشاهده احکام هر قرارداد روی شماره سریال آن کلیک نمایید</p>
+  <nz-table #contractTable nzBordered [nzData]="contracts" nzPageSize="3">
+    <thead>
+      <tr>
+        <th nzWidth="100px">سریال</th>
+        <th nzWidth="">نوع استخدام</th>
+        <th nzWidth="200حط">نوع قرارداد</th>
+        <th nzWidth="200px">تاریخ شروع</th>
+        <th nzWidth="200px">تاریخ پایان</th>
+        <th nzWidth="170px">سقف ساعت کارکرد</th>
+        <th nzWidth="100px">وضعیت</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of contractTable.data">
+        <td>
+          <a class="w-100" nz-button nzType="primary" (click)="selectedContract = data">{{ data.serial }}</a>
+        </td>
+        <td>{{ data.employementDescription }}</td>
+        <td>{{ data.type }}</td>
+        <td>{{ data.startTime }}</td>
+        <td>{{ data.endTime }}</td>
+        <td>{{ data.maxWork }}</td>
+        <td>{{ data.status }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+  <div nz-row style="min-height: 500px">
+    <div class="p-10" nz-col nzSpan="10">
+      <nz-table #rullTable nzBordered [nzData]="selectedContract?.rulls">
+        <thead>
+          <tr>
+            <th nzWidth="100px">شماره حکم</th>
+            <th nzWidth="">وضعیت</th>
+            <th nzWidth="200px">تاریخ اجرا</th>
+            <th nzWidth="100px">عملگرها</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of rullTable.data">
+            <td>
+              <a class="w-100" nz-button nzType="primary" (click)="selectedRull = data">{{ data.serial }}</a>
+            </td>
+            <td>{{ data.status }}</td>
+            <td>{{ data.date }}</td>
+            <td><button nz-button nzType="dashed" (click)="rullPrice(data)">نمایش مبالغ حلم</button></td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+    <div class="p-10" nz-col nzSpan="14">
+      <form nz-form>
+        <div class="row">
+          <div class="p-3 align-left"><label>نوع حکم : </label></div>
+          <div class="p-3"><input nz-input nzSize="small" type="text" /></div>
+        </div>
+        <div class="row">
+          <div class="p-3 align-left"><label>شرح حکم : </label></div>
+          <div class="p-3 flex-1"><textarea nz-input nzSize="small"></textarea></div>
+        </div>
+        <div class="row">
+          <div class="p-3 align-left flex flex-middle"><label>قسمت : </label></div>
+          <div class="p-3 flex-9 flex-center"><input nz-input nzSize="small" type="text" readonly /></div>
+          <div class="p-3"><button nz-button nzType="primary">انتخاب</button></div>
+        </div>
+        <div class="row">
+          <div class="p-3 align-left flex flex-middle"><label>قسمت محل ماموریت : </label></div>
+          <div class="p-3 flex-9 flex-center"><input nz-input nzSize="small" type="text" readonly /></div>
+          <div class="p-3"><button nz-button nzType="primary">انتخاب</button></div>
+        </div>
+        <div class="row">
+          <div class="p-3 align-left flex flex-middle"><label>پست : </label></div>
+          <div class="p-3 flex-9 flex-center"><input nz-input nzSize="small" type="text" readonly /></div>
+          <div class="p-3"><button nz-button nzType="primary">انتخاب</button></div>
+        </div>
+        <div class="row">
+          <div class="p-3 align-left flex flex-middle"><label>سمت : </label></div>
+          <div class="p-3 flex-9 flex-center"><input nz-input nzSize="small" type="text" readonly /></div>
+          <div class="p-3"><button nz-button nzType="primary">انتخاب</button></div>
+        </div>
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="row">
+              <div class="p-3 align-left"><label>گروه : </label></div>
+              <div class="p-3"><input nz-input nzSize="small" type="text" /></div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="row">
+              <div class="p-3 align-left"><label>رتبه : </label></div>
+              <div class="p-3"><input nz-input nzSize="small" type="text" /></div>
+            </div>
+          </div>
+          <div class="col-sm-4">
+            <div class="row">
+              <div class="p-3 align-left"><label>نوع بیمه : </label></div>
+              <div class="p-3"><input nz-input nzSize="small" type="text" /></div>
+            </div>
+          </div>
+        </div>
+        <hr class="my-10" />
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="row">
+              <div class="p-3 col-sm-5 align-left"><label>تنظیم کننده : </label></div>
+              <div class="p-3 flex-1"><input nz-input nzSize="small" type="text" /></div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="row">
+              <div class="p-3 col-sm-5 align-left"><label>تاریخ تنظیم : </label></div>
+              <div class="p-3 flex-1"><input nz-input nzSize="small" type="text" /></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="row">
+              <div class="p-3 col-sm-5 align-left"><label>فعال / غیر فعال کننده : </label></div>
+              <div class="p-3 flex-1"><input nz-input nzSize="small" type="text" /></div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="row">
+              <div class="p-3 col-sm-5 align-left"><label>تاریخ فعال / غیر فعال : </label></div>
+              <div class="p-3 flex-1"><input nz-input nzSize="small" type="text" /></div>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="row">
+              <div class="p-3 col-sm-5 align-left"><label>ابطال کننده : </label></div>
+              <div class="p-3 flex-1"><input nz-input nzSize="small" type="text" /></div>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="row">
+              <div class="p-3 col-sm-5 align-left"><label>تاریخ ابطلال : </label></div>
+              <div class="p-3 flex-1"><input nz-input nzSize="small" type="text" /></div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<nz-modal [(nzVisible)]="rullPriceModal" nzTitle="ویرایش حکم" nzWidth="768" (nzOnCancel)="rullPriceCancel()">
+  <nz-table #itemTable nzBordered [nzData]="selectedRull?.items">
+    <thead>
+      <tr>
+        <th nzWidth="100px">سریال</th>
+        <th nzWidth="">علت صدور حکم</th>
+        <th nzWidth="200px">مبلغ</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of itemTable.data">
+        <td>{{ data.serial }}</td>
+        <td>{{ data.reason }}</td>
+        <td>{{ data.amount }}</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</nz-modal>

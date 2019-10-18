@@ -1,0 +1,31 @@
+<div class="card p-20">
+  <h2>مشاغل</h2>
+  <hr>
+  <div>
+    <button nz-button (click)="addRow()" nzType="primary" class="addBtn">اضافه کردن</button>
+    <nz-table #editRowTable nzBordered [nzData]="listOfData">
+      <thead>
+        <tr>
+          <th nzWidth="100px">سریال</th>
+          <th nzWidth="130px">کد شغل بیمه</th>
+          <th nzWidth="">عنوان</th>
+          <th nzWidth="200px">رسته شغلی</th>
+          <th nzWidth="100px">سرپرستی</th>
+          <th nzWidth="100px">فعال</th>
+          <th nzWidth="170px">عملگرها</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of editRowTable.data">
+          <td>{{ data.serial }}</td>
+          <td>{{ data.insuranceCode }}</td>
+          <td>{{ data.title }}</td>
+          <td>{{ data.jobString }}</td>
+          <td><label nz-checkbox [(ngModel)]="editCache[data.id].data.supervision" nzDisabled></label></td>
+          <td><label nz-checkbox [(ngModel)]="editCache[data.id].data.active" nzDisabled></label></td>
+          <td></td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>
